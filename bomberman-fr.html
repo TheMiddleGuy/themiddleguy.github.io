@@ -3,7 +3,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Bomberman · Danila Runiskovs</title>
-<meta name="description" content="Un jeu Bomberman créé avec mon propre moteur C++ basé sur SDL3, développé à partir de Minigin. Le projet associe des systèmes moteur réutilisables à un gameplay sur grille, avec des modes solo, coopération et JcJ.">
+<meta name="description" content="Un jeu d’arcade dans l’esprit de Bomberman, qui tourne sur mon propre moteur C++, construit à partir du framework Minigin avec SDL3. En solo, en coopération et en JcJ.">
 <meta name="theme-color" content="#191919">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2212%22%20fill%3D%22%237A263A%22/%3E%3Cpath%20d%3D%22M17%2017h12c23%200%2023%2030%200%2030H17zm8%207v16h4c12%200%2012-16%200-16z%22%20fill%3D%22%23F2E8D5%22/%3E%3C/svg%3E">
 <link rel="stylesheet" href="styles.css"><script src="language.js?v=2" defer></script>
@@ -17,10 +17,10 @@
 </header>
 
 <main id="main" class="detail"><a class="back-link" href="index-fr.html#work">← Tous les projets</a>
-<div class="detail-heading"><p class="eyebrow">PROJET 01 / DÉVELOPPEMENT DE MOTEUR</p>
+<div class="detail-heading"><p class="eyebrow">PROJET 02 / DÉVELOPPEMENT DE MOTEUR</p>
 
 <h1>Bomberman<span class="accent">.</span></h1>
-<p class="detail-intro">Un jeu Bomberman créé avec mon propre moteur C++ basé sur SDL3, développé à partir de Minigin. Le projet associe des systèmes moteur réutilisables à un gameplay sur grille, avec des modes solo, coopération et JcJ.</p>
+<p class="detail-intro">Un jeu d’arcade dans l’esprit de Bomberman, qui tourne sur mon propre moteur C++, construit à partir du framework Minigin avec SDL3. En solo, en coopération et en JcJ.</p>
 </div>
 
 <dl class="facts">
@@ -40,27 +40,44 @@
 <section class="case-section"><p class="eyebrow">01</p>
 
 <h2>Ma contribution</h2>
-<p>J’ai développé le moteur et le jeu à partir de Minigin, en ajoutant des systèmes de scènes, de composants, d’entrées, d’audio, de gestion des états, de collisions, de ressources, d’événements et de sauvegarde.</p>
+<div class="case-body">
+<p>J’ai développé à la fois le moteur et le jeu. Par-dessus Minigin, j’ai ajouté des systèmes pour les scènes, les composants, les entrées, l’audio, les collisions, les ressources, les événements et la sauvegarde, et j’ai pu mettre en pratique des patrons comme une pile d’états, un service locator et des observateurs.</p>
+<p>La dernière ligne droite a été précipitée et, chose amusante, certaines de mes idées préférées sont nées dans ces dernières heures avant la deadline.</p>
+</div>
 </section>
 
 <section class="case-section"><p class="eyebrow">02</p>
 
-<h2>Une pile pour les menus et le gameplay</h2>
-<p>La pile d’états gère l’écran titre, les menus, le gameplay, l’écran de fin de partie et le classement. Les opérations Push, Pop et Change permettent de mettre les transitions en attente. C’était l’une de mes parties préférées du projet : une seule structure pour gérer plusieurs aspects distincts du jeu.</p>
+<h2>Une pile pour les menus et le jeu</h2>
+<div class="case-body">
+<p><strong>Le problème.</strong> Le jeu passe d’un écran titre aux menus, au jeu, à un écran de fin de partie et à un classement. Certains écrans doivent se placer <em>par-dessus</em> d’autres sans détruire ce qu’il y a en dessous.</p>
+<p><strong>Ce que j’ai envisagé.</strong> Une simple machine à états (un enum et un switch) suffirait pour une ligne droite de l’écran titre au jeu puis à la fin de partie. Mais chaque écran devrait savoir où aller ensuite, et <em>revenir</em> en arrière voudrait dire reconstruire un écran de zéro.</p>
+<p><strong>Ce que j’ai choisi.</strong> Une pile d’états de jeu avec trois opérations : <em>Push</em> place un écran au-dessus et garde celui du dessous en vie, <em>Pop</em> y revient exactement comme il était, et <em>Change</em> remplace l’écran du dessus. Les transitions sont mises en file d’attente au lieu d’être appliquées dès qu’on les demande.</p>
+<p><strong>Le résultat.</strong> Une seule structure gère tout ce qui se passe en dehors du jeu lui-même, et ajouter un écran revient à écrire un nouvel état. L’une de mes parties préférées du projet.</p>
+</div>
 </section>
 
 <section class="case-section"><p class="eyebrow">03</p>
-<h2>Ma petite optimisation</h2>
-<p>Une petite optimisation dont je suis particulièrement fier concerne le classement. Je stocke les scores en centaines, je les enregistre en binaire avec les initiales du joueur, puis je reconstitue le score affiché dans le jeu. Seuls les cinq meilleurs scores sont conservés, avec une seule vérification en fin de partie pour savoir si le score mérite sa place. C’est un petit détail, mais il me fait toujours sourire. Comme l’a dit un ami : <q>Ça ferait verser une larme de joie à une cartouche Nintendo.</q></p>
+
+<h2>Un classement avec une pincée de poudre magique</h2>
+<div class="case-body">
+<p><strong>Le problème.</strong> Un jeu d’arcade à l’ancienne a besoin d’un classement : des initiales, un score et un top 5 qui survit à la fermeture du jeu.</p>
+<p><strong>Ce que j’ai envisagé.</strong> La solution évidente : un fichier texte ou JSON avec le nom et le score complet. Facile à lire, facile à déboguer, et plus gros que nécessaire.</p>
+<p><strong>Ce que j’ai choisi.</strong> La programmation rétro m’a appris à être mesquin avec la mémoire, et je n’allais pas laisser ça se perdre. Tous les scores de mon jeu sont des multiples de 100 : je stocke donc score ÷ 100 dans un entier de 16 bits au lieu du score complet sur 32 bits. En fin de partie, il y a une seule vérification d’éligibilité et un tri, puis les trois initiales et le score partent dans un fichier binaire et en ressortent sous forme de top 5 formaté.</p>
+<p><strong>Le résultat.</strong> Chaque entrée (3 initiales + score) passe de 7 à 5 octets, et le plafond reste à 6,5 millions de points. Est-ce que ça compte sur du matériel moderne ? Pas le moins du monde. Je l’ai fait parce que je le pouvais, et je me suis bien amusé. Comme l’a dit un ami : <q>Une cartouche Nintendo en verserait une larme de joie.</q></p>
+</div>
 </section>
 
 <section class="case-section"><p class="eyebrow">04</p>
 
-<h2>Choisir le bon niveau de complexité</h2>
-<p>Des tests d’intersection de rectangles assurent une détection des collisions légère. Un format binaire compact stocke le classement. Ces choix répondaient aux besoins du jeu tout en gardant des systèmes faciles à gérer. Les dernières étapes ont été précipitées ; le nettoyage et la cohérence du code font partie des points que j’aimerais améliorer.</p>
+<h2>Avec du recul</h2>
+<div class="case-body">
+<p>Le classement ? Je le referais exactement de la même façon. Pourquoi pas ? D’autres choix étaient volontairement simples aussi, comme de simples tests d’intersection de rectangles pour les collisions, tout ce dont un jeu sur grille avait vraiment besoin.</p>
+<p>La fin précipitée a tout de même laissé des traces. Le nettoyage du code et sa cohérence sont les premières choses que j’améliorerais.</p>
+</div>
 </section>
 </div>
-<a class="next-project" href="projectpp-fr.html"><span class="eyebrow">PROJET SUIVANT</span><span>ProjectPP <span aria-hidden="true">→</span></span></a></main>
+<a class="next-project" href="ghouls-and-fools-fr.html"><span class="eyebrow">PROJET SUIVANT</span><span>Ghouls’n’Fools <span aria-hidden="true">→</span></span></a></main>
 
 <footer><a class="brand" href="index-fr.html">DR<span class="accent">.</span></a><span>Danila Runiskovs · Développeur de jeux et programmeur C++ / C#</span><a href="#main">Retour en haut ↑</a></footer>
 </body></html>

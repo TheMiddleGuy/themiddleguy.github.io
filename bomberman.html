@@ -3,7 +3,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Bomberman · Danila Runiskovs</title>
-<meta name="description" content="A Bomberman game built with my own SDL3-based C++ engine, developed and extended from Minigin. The project combines reusable engine systems with grid-based gameplay across Solo, Co-op and PvP modes.">
+<meta name="description" content="A Bomberman-style arcade game running on my own C++ engine, built on top of the Minigin framework with SDL3. Solo, Co-op and PvP.">
 <meta name="theme-color" content="#191919">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2212%22%20fill%3D%22%237A263A%22/%3E%3Cpath%20d%3D%22M17%2017h12c23%200%2023%2030%200%2030H17zm8%207v16h4c12%200%2012-16%200-16z%22%20fill%3D%22%23F2E8D5%22/%3E%3C/svg%3E">
 <link rel="stylesheet" href="styles.css"><script src="language.js?v=2" defer></script>
@@ -17,10 +17,10 @@
 </header>
 
 <main id="main" class="detail"><a class="back-link" href="index.html#work">← All projects</a>
-<div class="detail-heading"><p class="eyebrow">PROJECT 01 / ENGINE DEVELOPMENT</p>
+<div class="detail-heading"><p class="eyebrow">PROJECT 02 / ENGINE DEVELOPMENT</p>
 
 <h1>Bomberman<span class="accent">.</span></h1>
-<p class="detail-intro">A Bomberman game built with my own SDL3-based C++ engine, developed and extended from Minigin. The project combines reusable engine systems with grid-based gameplay across Solo, Co-op and PvP modes.</p>
+<p class="detail-intro">A Bomberman-style arcade game running on my own C++ engine, built on top of the Minigin framework with SDL3. Solo, Co-op and PvP.</p>
 </div>
 
 <dl class="facts">
@@ -40,27 +40,44 @@
 <section class="case-section"><p class="eyebrow">01</p>
 
 <h2>My contribution</h2>
-<p>I developed the engine and game, extending the Minigin foundation with systems for scenes, components, input, audio, state management, collisions, resources, events and save data.</p>
+<div class="case-body">
+<p>I built both the engine and the game. On top of Minigin I added systems for scenes, components, input, audio, collisions, resources, events and save data, and got to put patterns like a state stack, a service locator and observers to real use.</p>
+<p>The final stretch was rushed, and funnily enough, some of my favourite ideas were born in those last hours before the deadline.</p>
+</div>
 </section>
 
 <section class="case-section"><p class="eyebrow">02</p>
 
 <h2>A stack for menus and gameplay</h2>
-<p>The game-state stack manages the title screen, menus, gameplay, game-over screen and leaderboard. Push, Pop and Change operations allow transitions to be queued. This was one of my favourite parts of the project: a single structure supporting several distinct parts of the game.</p>
+<div class="case-body">
+<p><strong>The problem.</strong> The game moves between a title screen, menus, gameplay, a game-over screen and a leaderboard. Some screens need to sit <em>on top of</em> others without destroying what’s underneath.</p>
+<p><strong>What I considered.</strong> A plain state machine (an enum and a switch) would cover a straight line from title to game to game over. But every screen would need to know where to go next, and going <em>back</em> would mean rebuilding a screen from scratch.</p>
+<p><strong>What I chose.</strong> A stack of game states with three operations: <em>Push</em> puts a screen on top and keeps the one below alive, <em>Pop</em> returns to it exactly as it was, and <em>Change</em> swaps the top screen. Transitions are queued rather than applied the moment they’re requested.</p>
+<p><strong>The result.</strong> One structure runs every part of the game outside the gameplay itself, and adding a new screen means writing one new state. One of my favourite parts of the project.</p>
+</div>
 </section>
 
 <section class="case-section"><p class="eyebrow">03</p>
-<h2>My bit of optimisation</h2>
-<p>One small optimisation I’m particularly proud of is the leaderboard. I store scores in hundreds, save them alongside the player’s initials in binary, and reconstruct the displayed score in-game. Only the top five scores are kept, with a single qualification check at the end of each game. It’s a tiny tweak, but it still makes me happy. As a friend put it: <q>This would make a Nintendo cartridge shed a tear of joy.</q></p>
+
+<h2>A leaderboard with a bit of fairy dust</h2>
+<div class="case-body">
+<p><strong>The problem.</strong> An old-school arcade game needs a leaderboard: initials, a score, and a top five that survives closing the game.</p>
+<p><strong>What I considered.</strong> The obvious route is a text or JSON file with the name and the full score. Easy to read, easy to debug, and bigger than it needs to be.</p>
+<p><strong>What I chose.</strong> Retro programming taught me to be petty about memory, and I wasn’t going to let that go to waste. Every score in my game is a multiple of 100, so I store score ÷ 100 in a 16-bit integer instead of the full score in 32 bits. At the end of a game there’s a single eligibility check and a sort, then the three initials and the score go into a binary file and come back out as a formatted top five.</p>
+<p><strong>The result.</strong> Each entry (3 initials + score) shrinks from 7 bytes to 5, and the cap still sits at 6.5 million points. Does it matter on modern hardware? Not in the slightest. I did it because I could, and I had fun. As a friend put it: <q>This would make a Nintendo cartridge shed a tear of joy.</q></p>
+</div>
 </section>
 
 <section class="case-section"><p class="eyebrow">04</p>
 
-<h2>Choosing the right amount of complexity</h2>
-<p>Rectangle intersection tests provide lightweight collision detection. A compact binary format stores leaderboard entries. These choices fit the game’s requirements and kept the systems manageable. The final development stages were rushed; code cleanup and consistency remain areas I would improve.</p>
+<h2>Looking back</h2>
+<div class="case-body">
+<p>The leaderboard? I’d do it exactly the same way again. Why not? Some other choices were deliberately simple too, like plain rectangle intersection tests for collisions, which was all a grid-based game really needed.</p>
+<p>The rushed ending did leave its marks, though. Code cleanup and consistency are the first things I’d improve.</p>
+</div>
 </section>
 </div>
-<a class="next-project" href="projectpp.html"><span class="eyebrow">NEXT PROJECT</span><span>ProjectPP <span aria-hidden="true">→</span></span></a></main>
+<a class="next-project" href="ghouls-and-fools.html"><span class="eyebrow">NEXT PROJECT</span><span>Ghouls’n’Fools <span aria-hidden="true">→</span></span></a></main>
 
 <footer><a class="brand" href="index.html">DR<span class="accent">.</span></a><span>Danila Runiskovs · Game Developer &amp; C++ / C# Programmer</span><a href="#main">Back to top ↑</a></footer>
 </body></html>

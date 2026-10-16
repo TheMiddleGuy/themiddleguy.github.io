@@ -3,7 +3,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ProjectPP · Danila Runiskovs</title>
-<meta name="description" content="Un outil de diaporama pour la NES, créé en équipe en assembleur 6502. Pour ce premier projet en assembleur, j’ai dû apprendre une approche de programmation très différente tout en contribuant à une base de code commune.">
+<meta name="description" content="Un outil de diaporama pour la NES, réalisé avec quatre amis en assembleur 6502. Ma première expérience en assembleur, et l’endroit où j’ai appris à faire biper une Nintendo.">
 <meta name="theme-color" content="#191919">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2212%22%20fill%3D%22%237A263A%22/%3E%3Cpath%20d%3D%22M17%2017h12c23%200%2023%2030%200%2030H17zm8%207v16h4c12%200%2012-16%200-16z%22%20fill%3D%22%23F2E8D5%22/%3E%3C/svg%3E">
 <link rel="stylesheet" href="styles.css"><script src="language.js?v=2" defer></script>
@@ -17,10 +17,10 @@
 </header>
 
 <main id="main" class="detail"><a class="back-link" href="index-fr.html#work">← Tous les projets</a>
-<div class="detail-heading"><p class="eyebrow">PROJET 02 / PROGRAMMATION BAS NIVEAU</p>
+<div class="detail-heading"><p class="eyebrow">PROJET 04 / PROGRAMMATION BAS NIVEAU</p>
 
 <h1>ProjectPP<span class="accent">.</span></h1>
-<p class="detail-intro">Un outil de diaporama pour la NES, créé en équipe en assembleur 6502. Pour ce premier projet en assembleur, j’ai dû apprendre une approche de programmation très différente tout en contribuant à une base de code commune.</p>
+<p class="detail-intro">Un outil de diaporama pour la NES, réalisé avec quatre amis en assembleur 6502. Ma première expérience en assembleur, et l’endroit où j’ai appris à faire biper une Nintendo.</p>
 </div>
 
 <dl class="facts">
@@ -40,22 +40,39 @@
 <section class="case-section"><p class="eyebrow">01</p>
 
 <h2>Ma contribution</h2>
-<p>J’ai intégré le son en partant de zéro, apporté de petites optimisations à la boucle principale et ajouté des améliorations d’utilisation. C’étaient mes contributions au sein d’une équipe de cinq personnes ; l’outil de diaporama était un travail collectif.</p>
+<div class="case-body">
+<p>Pour la plupart d’entre nous, c’était la première fois qu’on écrivait de l’assembleur, et il m’a fallu un moment pour m’y sentir à l’aise. Au début, je me suis concentré sur les tests, la compréhension du code existant et des améliorations de confort : remettre dans le bon ordre les actions de la boucle principale et gérer des numéros de diapositive jusqu’à trois chiffres (qui aurait besoin de 999 diapositives ?).</p>
+<p>Puis on m’a confié une fonctionnalité bien à moi : le son.</p>
+</div>
 </section>
 
 <section class="case-section"><p class="eyebrow">02</p>
 
-<h2>Apprendre avec un matériel inconnu</h2>
-<p>L’assembleur 6502 était ma première expérience à ce niveau. Comprendre le programme existant et y apporter des changements utiles tout en apprenant le langage a été l’un des principaux défis du projet.</p>
+<h2>Faire biper une NES</h2>
+<div class="case-body">
+<p><strong>Le problème.</strong> Quand on change de diapositive, la console doit émettre un petit bip : aigu en avançant, grave en reculant. Simple à décrire. Sur une NES, un peu moins.</p>
+<p><strong>Ce que j’ai envisagé.</strong> D’abord, une bibliothèque audio NES précompilée existante. En théorie, la solution facile. En pratique, les sons qui sortaient n’étaient pas ceux que j’avais créés dans l’éditeur, et personne, pas même notre professeur, n’a compris pourquoi.</p>
+<p><strong>Ce que j’ai choisi.</strong> « Tomber sept fois, se relever huit », me suis-je dit. Je n’allais pas laisser un bug de bibliothèque bloquer l’équipe : j’ai donc parcouru forum après forum pour voir comment d’autres développeurs programmaient le son sur NES, puis je l’ai écrit moi-même. Il n’utilise que le premier canal pulse (onde carrée) :</p>
+<ul>
+<li><code>$4000</code> règle un rapport cyclique de 25 % à volume constant 10.</li>
+<li><code>$4001</code> désactive le sweep, et <code>$4003</code> règle un compteur de durée long.</li>
+<li><code>$4002</code> règle la hauteur : une période de 100 pour le bip aigu (~1,1 kHz) et de 180 pour le grave (~620 Hz).</li>
+<li>Un minuteur d’un octet en page zéro est réglé sur 30 images et décrémenté dans le NMI, une fois par image. Quand il atteint zéro, le volume repasse à 0. À 60 images par seconde, cela fait une demi-seconde.</li>
+</ul>
+<p>Les bips respectent aussi le réglage son activé/désactivé de l’outil.</p>
+<p><strong>Le résultat.</strong> Un « bip » en avançant et un « boup » en reculant. Tout se résume à savoir quel bit mettre, à quelle adresse, à quel moment exactement et pendant combien de temps. En chemin, j’ai appris comment le son est produit numériquement au niveau le plus bas.</p>
+</div>
 </section>
 
 <section class="case-section"><p class="eyebrow">03</p>
 
-<h2>Intégration du son</h2>
-<p>Un problème logiciel empêchait les bibliothèques audio disponibles de fonctionner. Après avoir longtemps essayé de les faire marcher, j’ai écrit les bips des diapositives de zéro. Simple en théorie, mais un vrai défi pour ma première expérience avec le matériel Nintendo. Avec de petites améliorations d’utilisation et quelques remaniements du code, cela a constitué ma principale contribution au projet.</p>
+<h2>Avec du recul</h2>
+<div class="case-body">
+<p>J’aurais aimé me documenter un peu plus au début du projet. Avec un meilleur départ, j’aurais pu m’attaquer à quelque chose de plus ambitieux, comme un éditeur de texte intégré. Mais je suis fier de ce que j’ai réalisé, et de ne pas avoir abandonné.</p>
+</div>
 </section>
 </div>
-<a class="next-project" href="ghouls-and-fools-fr.html"><span class="eyebrow">PROJET SUIVANT</span><span>Ghouls’n’Fools <span aria-hidden="true">→</span></span></a></main>
+<a class="next-project" href="fiasco-fiesta-fr.html"><span class="eyebrow">PROJET SUIVANT</span><span>Fiasco Fiesta <span aria-hidden="true">→</span></span></a></main>
 
 <footer><a class="brand" href="index-fr.html">DR<span class="accent">.</span></a><span>Danila Runiskovs · Développeur de jeux et programmeur C++ / C#</span><a href="#main">Retour en haut ↑</a></footer>
 </body></html>

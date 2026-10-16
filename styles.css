@@ -968,3 +968,18 @@ nav a[aria-current="page"] { border-bottom: 2px solid var(--red); }
 @media (max-width: 700px) { .contact-section { grid-template-columns: 1fr; gap: 24px; padding: 40px 0 50px; } }
 
 .resume-link { display: flex; width: fit-content; margin-top: 20px; }
+
+/* Longer case-study sections: several paragraphs, lists and code. */
+.case-body { min-width: 0; color: var(--muted); font-size: 17px; }
+.case-body p { margin: 0 0 16px; }
+.case-body ul { margin: 0 0 16px; padding-left: 20px; }
+.case-body li { margin-bottom: 8px; }
+.case-body > :last-child { margin-bottom: 0; }
+.case-body strong { color: var(--cream); font-weight: 600; }
+.case-body code { font-family: Consolas, monospace; font-size: .9em; color: var(--cream); background: var(--panel); border: 1px solid var(--line); border-radius: 2px; padding: 1px 5px; overflow-wrap: anywhere; }
+@media (max-width: 700px) { .case-section > .case-body { grid-column: 2; } }
+
+/* Text covers for projects that don't have images yet. */
+.project-visual .type-cover { transition: transform .2s; }
+.project-visual:hover .type-cover { transform: scale(1.025); }
+.graduation-work .type-cover { background: var(--red); }
