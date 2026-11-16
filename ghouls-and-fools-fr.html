@@ -3,7 +3,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ghouls’n’Fools · Danila Runiskovs</title>
-<meta name="description" content="Un jeu coopératif local d’un seul niveau, réalisé par une équipe de six personnes. Jusqu’à quatre joueurs s’entraident pour s’échapper d’un hôtel hanté, armés de lampes torches et d’un aspirateur à améliorer pour venir à bout des fantômes.">
+<meta name="description" content="Un hôtel hanté, un aspirateur à améliorer, et quatre amis qui tentent de s’en sortir ensemble. Un jeu coopératif local réalisé par une équipe de six.">
 <meta name="theme-color" content="#191919">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2212%22%20fill%3D%22%237A263A%22/%3E%3Cpath%20d%3D%22M17%2017h12c23%200%2023%2030%200%2030H17zm8%207v16h4c12%200%2012-16%200-16z%22%20fill%3D%22%23F2E8D5%22/%3E%3C/svg%3E">
 <link rel="stylesheet" href="styles.css"><script src="language.js?v=2" defer></script>
@@ -17,74 +17,56 @@
 </header>
 
 <main id="main" class="detail"><a class="back-link" href="index-fr.html#work">← Tous les projets</a>
-<div class="detail-heading"><p class="eyebrow">PROJET 03 / DÉVELOPPEMENT EN ÉQUIPE</p>
+<div class="detail-heading"><p class="eyebrow">PROJET 02 / UNITY · C# · COOP LOCALE</p>
 
 <h1>Ghouls’n’Fools<span class="accent">.</span></h1>
-<p class="detail-intro">Un jeu coopératif local d’un seul niveau, réalisé par une équipe de six personnes. Jusqu’à quatre joueurs s’entraident pour s’échapper d’un hôtel hanté, armés de lampes torches et d’un aspirateur à améliorer pour venir à bout des fantômes.</p>
+<p class="detail-intro">Un hôtel hanté, un aspirateur à améliorer, et quatre amis qui tentent de s’en sortir ensemble. Un jeu coopératif local réalisé par une équipe de six.</p>
 </div>
 
+<figure class="detail-media"><video controls playsinline preload="metadata" poster="assets/gnf-trailer-poster.jpg" width="1280" height="720" aria-label="Bande-annonce de Ghouls’n’Fools"><source src="assets/gnf-trailer.mp4" type="video/mp4"></video><figcaption>La bande-annonce officielle, réalisée par notre équipe.</figcaption></figure>
+
 <dl class="facts">
-<div><dt>MON RÔLE</dt><dd>Responsable d’équipe et programmeur gameplay</dd></div>
+<div><dt>MON RÔLE</dt><dd>Développeur principal</dd></div>
 
-<div><dt>CONTEXTE</dt><dd>Équipe de 6</dd></div>
+<div><dt>ÉQUIPE</dt><dd>Projet d’équipe</dd></div>
 
-<div><dt>TECHNOLOGIES</dt><dd>UNITY / C# / COOP LOCALE</dd></div>
+<div><dt>DURÉE</dt><dd>1 semestre</dd></div>
 </dl>
 
 <div class="project-links"><a class="button" href="https://jeremiahvb.itch.io/gp33ghouls-and-fools">Télécharger le jeu sur itch.io ↗</a>
-<a class="button secondary" href="https://www.youtube.com/watch?v=mjeQlchrMSA">Voir la bande-annonce ↗</a></div>
-
-<figure class="detail-media gameplay-animation"><img src="assets/ghouls-gameplay.gif" alt="Animation de gameplay montrant quatre joueurs explorant l’hôtel hanté avec des lampes torches." width="400" height="225"><figcaption>Animation de gameplay provenant de la page itch.io de l’équipe.</figcaption></figure>
+<a class="button secondary" href="https://github.com/TheMiddleGuy/GhoulsAndFoolsArchive">Voir le code source ↗</a></div>
 
 <div class="case-study">
 <section class="case-section"><p class="eyebrow">01</p>
 
 <h2>Ma contribution</h2>
-<div class="case-body">
-<p>Ghouls’n’Fools a été mon premier grand projet d’équipe. Une équipe très variée : deux game designers qui prototypaient les mécaniques, trois artistes, et moi comme chef d’équipe et développeur principal.</p>
-<p>Plusieurs personnes ont écrit du code. L’IA des ennemis, la santé des joueurs et les améliorations de l’aspirateur, par exemple, sont l’œuvre de mes coéquipiers. Mon travail à moi : la boucle de jeu, le lobby, les entrées et les déplacements, l’intégration des prototypes des designers et l’import des assets dans le moteur.</p>
+<div class="case-body"><p>Ghouls’n’Fools a été mon premier grand projet d’équipe. J’en étais le développeur principal, chargé de la boucle de jeu, du lobby, des entrées et des déplacements, et de l’intégration des prototypes de nos designers en un seul jeu.</p>
 </div>
 </section>
 
 <section class="case-section"><p class="eyebrow">02</p>
 
 <h2>Des prototypes séparés à un seul jeu</h2>
-<div class="case-body">
-<p><strong>Le problème.</strong> Nos designers construisaient les mécaniques rapidement, sous forme de prototypes indépendants, et c’est exactement le rôle d’un prototype. Chacun fonctionnait seul, mais ils n’étaient pas écrits pour cohabiter. L’arrivée des joueurs dans le lobby, l’attribution des couleurs et tout l’état du jeu, par exemple, se trouvaient dans un seul long <code>Update()</code> qui vérifiait à chaque image si quelque chose avait changé.</p>
-<p><strong>Ce que j’ai envisagé.</strong> Recoller les prototypes tels quels aurait été le plus rapide à court terme. Mais chaque nouvelle mécanique aurait alors dû connaître toutes les autres, et les bugs se seraient cachés dans cet énorme <code>Update()</code>.</p>
-<p><strong>Ce que j’ai choisi.</strong> Environ la moitié de mon travail sur le projet a été de l’intégration : reprendre chaque prototype, le connecter au reste du jeu et le refactoriser si nécessaire. Pour le déroulement de la partie, je suis passé du polling aux observateurs et aux événements : quelque chose se produit quand une action <em>se termine</em>, au lieu d’être vérifié à chaque image. L’arrivée des joueurs, la détection de victoire et de défaite et le décompte des fantômes restants fonctionnent tous ainsi. C’est un patron courant, fait précisément pour ce genre de situation, et j’étais content de pouvoir enfin le mettre en pratique.</p>
-<p><strong>Le résultat.</strong> Les menus et le déroulement de la partie tournent sans vérifications coûteuses dans le hot path, et l’état du jeu est connu et lisible à tout moment.</p>
+<div class="case-body"><p>Nos designers construisaient les mécaniques rapidement, sous forme de prototypes indépendants. Chacun fonctionnait seul, mais pas avec les autres : l’arrivée des joueurs, l’attribution des couleurs et l’état du jeu se trouvaient dans un seul long <code>Update()</code> qui vérifiait les changements à chaque image. J’ai connecté chaque prototype au reste du jeu et fait passer le déroulement de la partie aux événements et aux observateurs. L’arrivée des joueurs, la détection de victoire et de défaite et le décompte des fantômes réagissent désormais quand quelque chose se produit, au lieu d’être vérifiés à chaque image.</p>
+<figure class="inline-media"><img src="assets/ghouls-gameplay.gif" alt="Animation de gameplay : quatre joueurs explorent l’hôtel hanté avec des lampes torches." width="400" height="225" loading="lazy"><figcaption>Gameplay du jeu final.</figcaption></figure>
 </div>
 </section>
 
 <section class="case-section"><p class="eyebrow">03</p>
 
-<h2>Faire entrer l’art dans le moteur</h2>
-<div class="case-body">
-<p>Un seul de nos artistes connaissait tout le pipeline des assets, alors je suis devenu le pont entre l’art et le moteur. J’ai transformé les assets en prefabs : vérifier l’échelle et l’orientation, brancher les matériaux et m’assurer que tout rendait bien en jeu.</p>
-<p>Ce n’était pas vraiment du code, mais c’est ce qui a permis de finir le jeu, et j’y ai beaucoup appris sur la façon dont l’art arrive réellement à l’écran.</p>
+<h2>Une expérience qui n’a pas été retenue</h2>
+<div class="case-body"><p>Les spotlights de Unity ne donnaient pas le rendu de lampe torche que nous voulions, alors j’ai écrit des lampes torches de zéro dans un shader HLSL personnalisé, alimenté par la position et la direction de chaque lampe. Ça fonctionnait, mais c’était complexe, et nous sommes revenus à des spotlights poussés à fond. La simplicité a gagné.</p>
 </div>
 </section>
 
 <section class="case-section"><p class="eyebrow">04</p>
 
-<h2>Une expérience qui n’a pas été retenue</h2>
-<div class="case-body">
-<p>Le jeu avait besoin de lampes torches pour éclairer l’hôtel, et pendant le prototypage, les spotlights de Unity ne nous convenaient pas. J’ai donc fait ce que tout codeur un peu fou ferait : écrire des lampes torches de zéro dans un shader HLSL personnalisé. Le jeu transmettait la position et la direction de chaque lampe au shader via des variables globales, et le shader éclairait les surfaces à l’intérieur de chaque faisceau.</p>
-<p>C’était bancal mais, curieusement, ça donnait bien le rendu recherché. Au final, nous l’avons abandonné, surtout à cause de sa complexité, au profit de simples spotlights poussés à fond. La simplicité a gagné.</p>
-</div>
-</section>
-
-<section class="case-section"><p class="eyebrow">05</p>
-
 <h2>Avec du recul</h2>
-<div class="case-body">
-<p>En tant que chef d’équipe et développeur principal, la prochaine fois, je mettrais en place des revues de code dès le premier jour et je fixerais quelques conventions de code avec tous ceux qui touchent au code. Je reconstruirais aussi l’IA des ennemis sous forme de machine à états finis ou d’arbre de comportement.</p>
-<p>Malgré tout, nous sommes partis d’une équipe aux profils très différents et nous avons sorti un jeu fini, et je suis fier de la façon dont j’ai tenu l’ensemble. La <a class="inline-link" href="https://jeremiahvb.itch.io/gp33ghouls-and-fools">page itch.io</a> propose le téléchargement, la bande-annonce et les devlogs, et j’ai encore plein d’histoires à raconter sur ce projet si cela vous intéresse.</p>
+<div class="case-body"><p>J’étais aussi chef d’équipe. La prochaine fois, je mettrais en place des revues de code et des conventions dès le premier jour, et je reconstruirais l’IA des ennemis sous forme de machine à états ou d’arbre de comportement.</p>
 </div>
 </section>
 </div>
-<a class="next-project" href="projectpp-fr.html"><span class="eyebrow">PROJET SUIVANT</span><span>ProjectPP <span aria-hidden="true">→</span></span></a></main>
+<a class="next-project" href="graduation-work-fr.html"><span class="eyebrow">PROJET SUIVANT</span><span>Analyse du mouvement en tir à l’arc <span aria-hidden="true">→</span></span></a></main>
 
 <footer><a class="brand" href="index-fr.html">DR<span class="accent">.</span></a><span>Danila Runiskovs · Développeur de jeux et programmeur C++ / C#</span><a href="#main">Retour en haut ↑</a></footer>
 </body></html>

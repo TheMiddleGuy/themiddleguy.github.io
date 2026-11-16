@@ -3,7 +3,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ProjectPP · Danila Runiskovs</title>
-<meta name="description" content="A slideshow tool for NES hardware, made with four friends in 6502 assembly. My first time writing assembly, and the place where I learned to make a Nintendo beep.">
+<meta name="description" content="A slideshow tool for the Nintendo Entertainment System, written in 6502 assembly by a team of five.">
 <meta name="theme-color" content="#191919">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2212%22%20fill%3D%22%237A263A%22/%3E%3Cpath%20d%3D%22M17%2017h12c23%200%2023%2030%200%2030H17zm8%207v16h4c12%200%2012-16%200-16z%22%20fill%3D%22%23F2E8D5%22/%3E%3C/svg%3E">
 <link rel="stylesheet" href="styles.css"><script src="language.js?v=2" defer></script>
@@ -17,62 +17,47 @@
 </header>
 
 <main id="main" class="detail"><a class="back-link" href="index.html#work">← All projects</a>
-<div class="detail-heading"><p class="eyebrow">PROJECT 04 / LOW-LEVEL PROGRAMMING</p>
+<div class="detail-heading"><p class="eyebrow">PROJECT 06 / 6502 ASSEMBLY · NES</p>
 
 <h1>ProjectPP<span class="accent">.</span></h1>
-<p class="detail-intro">A slideshow tool for NES hardware, made with four friends in 6502 assembly. My first time writing assembly, and the place where I learned to make a Nintendo beep.</p>
+<p class="detail-intro">A slideshow tool for the Nintendo Entertainment System, written in 6502 assembly by a team of five.</p>
 </div>
 
+<figure class="detail-media nes"><img src="assets/projectpp.gif" alt="ProjectPP title slide reading PowerPoint in Assembly, with the five team members credited." width="1006" height="946"><figcaption>The slideshow’s opening screen, including the team credits.</figcaption></figure>
+
 <dl class="facts">
-<div><dt>MY ROLE</dt><dd>Assembly programmer</dd></div>
+<div><dt>MY ROLE</dt><dd>Programmer</dd></div>
 
-<div><dt>CONTEXT</dt><dd>Team of 5</dd></div>
+<div><dt>TEAM</dt><dd>Team project</dd></div>
 
-<div><dt>TECHNOLOGY</dt><dd>6502 ASSEMBLY / NES</dd></div>
+<div><dt>PRODUCTION</dt><dd>1 semester</dd></div>
 </dl>
 
 <div class="project-links"><a class="button" href="https://github.com/meowmeowbee01/Project_PP">View source ↗</a></div>
-
-<figure class="detail-media nes"><img src="assets/projectpp.gif" alt="ProjectPP title slide reading PowerPoint in Assembly, with the five team members credited." width="1006" height="946">
-<figcaption>The slideshow’s opening screen, including the team credits.</figcaption></figure>
 
 <div class="case-study">
 <section class="case-section"><p class="eyebrow">01</p>
 
 <h2>My contribution</h2>
-<div class="case-body">
-<p>For most of us, this was our first time writing assembly, and it took me a while to get comfortable with it. Early on, I focused on testing, learning the codebase and quality-of-life improvements: fixing the order of actions in the main loop, and supporting slide numbers up to three digits (who would ever need 999 slides?).</p>
-<p>Then I got entrusted with a feature of my own: sound.</p>
+<div class="case-body"><p>This was my first time writing assembly. I started with testing and quality-of-life fixes, like the order of the main loop and three-digit slide numbers, and then got a feature of my own: sound.</p>
 </div>
 </section>
 
 <section class="case-section"><p class="eyebrow">02</p>
 
 <h2>Making a NES beep</h2>
-<div class="case-body">
-<p><strong>The problem.</strong> When you move between slides, the console should give a short beep: high going forward, low going back. Simple to describe. On a NES, a bit less so.</p>
-<p><strong>What I considered.</strong> First, an existing precompiled NES audio library. In theory, the easy way. In practice, the sounds coming out were not the ones I’d made in the editor, and nobody, not even our professor, could figure out why.</p>
-<p><strong>What I chose.</strong> “Fall seven times, stand up eight,” I told myself. I wasn’t going to let a library bug stop our team, so I went from forum to forum to see how other developers program NES sound, and wrote it myself. It uses only the first pulse (square wave) channel:</p>
-<ul>
-<li><code>$4000</code> sets a 25% duty cycle at constant volume 10.</li>
-<li><code>$4001</code> turns the sweep off, and <code>$4003</code> sets a long length counter.</li>
-<li><code>$4002</code> sets the pitch: a period of 100 for the high beep (~1.1 kHz) and 180 for the low one (~620 Hz).</li>
-<li>A one-byte timer in zero page is set to 30 frames and counted down in the NMI, once per frame. When it hits zero, the volume goes back to 0. At 60 fps, that’s half a second.</li>
-</ul>
-<p>The beeps also respect the tool’s sound on/off setting.</p>
-<p><strong>The result.</strong> A “beep” going forward and a “boop” going back. It all comes down to knowing which bit to set, at which address, at exactly what time and for how long. Along the way, I learned how sound is made digitally at the very lowest level.</p>
+<div class="case-body"><p>A precompiled audio library played the wrong sounds, and nobody could work out why, so I wrote the sound myself on the first pulse channel. <code>$4000</code> sets the duty cycle and volume, <code>$4002</code> and <code>$4003</code> the pitch, and a one-byte timer counted down in the NMI stops the beep after 30 frames. A high beep going forward, a low boop going back.</p>
 </div>
 </section>
 
 <section class="case-section"><p class="eyebrow">03</p>
 
 <h2>Looking back</h2>
-<div class="case-body">
-<p>I wish I’d studied up a bit more in the early stages. With a stronger start, I could have taken on something bigger, like an in-app text editor. But I’m proud of what I made, and of not giving up on it.</p>
+<div class="case-body"><p>I wish I’d studied up more early on, so I could have taken on something bigger. But I’m proud I didn’t give up on it.</p>
 </div>
 </section>
 </div>
-<a class="next-project" href="fiasco-fiesta.html"><span class="eyebrow">NEXT PROJECT</span><span>Fiasco Fiesta <span aria-hidden="true">→</span></span></a></main>
+<a class="next-project" href="racing-thoughts.html"><span class="eyebrow">NEXT PROJECT</span><span>Racing Thoughts <span aria-hidden="true">→</span></span></a></main>
 
 <footer><a class="brand" href="index.html">DR<span class="accent">.</span></a><span>Danila Runiskovs · Game Developer &amp; C++ / C# Programmer</span><a href="#main">Back to top ↑</a></footer>
 </body></html>

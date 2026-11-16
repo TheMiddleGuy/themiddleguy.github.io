@@ -3,7 +3,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Analyse du mouvement en tir à l’arc · Danila Runiskovs</title>
-<meta name="description" content="Mon travail de fin d’études, là où mes deux passions se rencontrent : la capture de mouvement pour aider les archers à mesurer la stabilité et la régularité réelles de leurs tirs.">
+<meta name="description" content="Mon travail de fin d’études : des capteurs de mouvement et un peu de maths pour montrer aux archers la stabilité et la régularité réelles de leurs tirs.">
 <meta name="theme-color" content="#191919">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2212%22%20fill%3D%22%237A263A%22/%3E%3Cpath%20d%3D%22M17%2017h12c23%200%2023%2030%200%2030H17zm8%207v16h4c12%200%2012-16%200-16z%22%20fill%3D%22%23F2E8D5%22/%3E%3C/svg%3E">
 <link rel="stylesheet" href="styles.css"><script src="language.js?v=2" defer></script>
@@ -17,59 +17,45 @@
 </header>
 
 <main id="main" class="detail"><a class="back-link" href="index-fr.html#work">← Tous les projets</a>
-<div class="detail-heading"><p class="eyebrow">PROJET 06 / TRAVAIL DE FIN D’ÉTUDES · EN COURS</p>
+<div class="detail-heading"><p class="eyebrow">PROJET 03 / TRAVAIL DE FIN D’ÉTUDES · UNREAL ENGINE · SONY MOCOPI · CUDA C++</p>
 
 <h1>Analyse du mouvement en tir à l’arc<span class="accent">.</span></h1>
-<p class="detail-intro">Mon travail de fin d’études, là où mes deux passions se rencontrent : la capture de mouvement pour aider les archers à mesurer la stabilité et la régularité réelles de leurs tirs.</p>
+<p class="detail-intro">Mon travail de fin d’études : des capteurs de mouvement et un peu de maths pour montrer aux archers la stabilité et la régularité réelles de leurs tirs.</p>
 </div>
+
+<figure class="detail-media"><video controls playsinline preload="metadata" muted loop poster="assets/aim-replay-poster.jpg" width="1280" height="752" aria-label="Rejeu de tirs enregistrés"><source src="assets/aim-replay.mp4" type="video/mp4"></video><figcaption>Le lecteur de rejeu : les tirs enregistrés rejoués sur un avatar, tir par tir et image par image.</figcaption></figure>
 
 <dl class="facts">
 <div><dt>MON RÔLE</dt><dd>Développeur</dd></div>
 
-<div><dt>CONTEXTE</dt><dd>Travail de fin d’études · en cours</dd></div>
+<div><dt>ÉQUIPE</dt><dd>Projet solo</dd></div>
 
-<div><dt>TECHNOLOGIES</dt><dd>SONY MOCOPI / DTW / CUDA C++</dd></div>
+<div><dt>DURÉE</dt><dd>En cours</dd></div>
 </dl>
-
-<!-- Add a screenshot or gameplay clip here, inside <figure class="detail-media"> -->
 
 <div class="case-study">
 <section class="case-section"><p class="eyebrow">01</p>
 
 <h2>Pourquoi le tir à l’arc ?</h2>
-<div class="case-body">
-<p>Vous avez peut-être vu sur ma page <a class="inline-link" href="about-fr.html">À propos</a> que j’adore le tir à l’arc. Il m’apporte de la joie et de la sérénité. Mais je me suis heurté encore et encore au même problème : le manque d’entraînement encadré et de retours techniques. J’ai toujours voulu appliquer mes connaissances en développement de jeux et en programmation au tir à l’arc, et je crois avoir trouvé le moyen.</p>
+<div class="case-body"><p>Je pratique le tir à l’arc en compétition et, comme beaucoup d’archers, je me suis souvent entraîné sans entraîneur pour observer chaque tir. Ce projet, c’est l’œil d’entraîneur que j’ai toujours voulu avoir.</p>
 </div>
 </section>
 
 <section class="case-section"><p class="eyebrow">02</p>
 
-<h2>Le problème</h2>
-<div class="case-body">
-<p>En tir à l’arc, la régularité est primordiale : le meilleur tir est celui qu’on peut répéter. Mais sans entraîneur pour observer chaque tir, il est difficile de savoir à quel point le corps est vraiment stable de l’armement au lâcher, ou si l’on progresse réellement avec le temps.</p>
+<h2>Comment ça marche</h2>
+<div class="case-body"><p>Des capteurs Sony Mocopi enregistrent le haut du corps de l’archer pendant le tir. Chaque séance est sauvegardée et peut être rejouée sur un avatar, tir par tir. Le Dynamic Time Warping aligne ensuite les tirs par phase, l’armement avec l’armement et le lâcher avec le lâcher, pour pouvoir les comparer même quand leur rythme diffère. Les calculs lourds tournent en CUDA C++.</p>
 </div>
 </section>
 
 <section class="case-section"><p class="eyebrow">03</p>
 
-<h2>Le plan</h2>
-<div class="case-body">
-<p>J’utilise des capteurs de capture de mouvement Sony Mocopi pour enregistrer le haut du corps de l’archer pendant le tir.</p>
-<p>Deux tirs ne durent jamais exactement le même temps, je ne peux donc pas simplement les comparer image par image. J’utiliserai plutôt le <strong>Dynamic Time Warping (DTW)</strong>, un algorithme qui aligne deux mouvements de vitesses différentes avant de les comparer. Ainsi, l’armement est comparé à l’armement et le lâcher au lâcher. Par-dessus, je construirai des mesures de stabilité et de régularité, pour que les archers puissent suivre leur progression dans le temps.</p>
-<p>Les capteurs produisent beaucoup de données qu’il faut réduire et comparer rapidement : je prévois donc de confier le gros du calcul à <strong>CUDA C++</strong>.</p>
-<p>Le meilleur, c’est qu’il ne faut que des capteurs de mouvement disponibles dans le commerce : toute personne qui y a accès pourrait suivre sa propre progression.</p>
-</div>
-</section>
-
-<section class="case-section"><p class="eyebrow">04</p>
-
-<h2>À suivre</h2>
-<div class="case-body">
-<p>Le projet n’en est qu’à ses débuts, mais j’ai de grands espoirs pour lui, et je serais ravi de vous en dire plus.</p>
+<h2>La suite</h2>
+<div class="case-body"><p>Transformer ces comparaisons en scores de stabilité et de régularité clairs, que les archers peuvent suivre dans le temps.</p>
 </div>
 </section>
 </div>
-<a class="next-project" href="racing-thoughts-fr.html"><span class="eyebrow">PROJET SUIVANT</span><span>Racing Thoughts <span aria-hidden="true">→</span></span></a></main>
+<a class="next-project" href="fiasco-fiesta-fr.html"><span class="eyebrow">PROJET SUIVANT</span><span>Fiasco Fiesta <span aria-hidden="true">→</span></span></a></main>
 
 <footer><a class="brand" href="index-fr.html">DR<span class="accent">.</span></a><span>Danila Runiskovs · Développeur de jeux et programmeur C++ / C#</span><a href="#main">Retour en haut ↑</a></footer>
 </body></html>

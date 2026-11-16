@@ -3,7 +3,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ghouls’n’Fools · Danila Runiskovs</title>
-<meta name="description" content="A one-level local co-op game made by a six-person team. Up to four players work together to escape a haunted hotel, using flashlights and an upgradeable vacuum to deal with the ghosts.">
+<meta name="description" content="A haunted hotel, an upgradeable vacuum, and four friends trying to make it out together. A local co-op game made by a team of six.">
 <meta name="theme-color" content="#191919">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2212%22%20fill%3D%22%237A263A%22/%3E%3Cpath%20d%3D%22M17%2017h12c23%200%2023%2030%200%2030H17zm8%207v16h4c12%200%2012-16%200-16z%22%20fill%3D%22%23F2E8D5%22/%3E%3C/svg%3E">
 <link rel="stylesheet" href="styles.css"><script src="language.js?v=2" defer></script>
@@ -17,74 +17,56 @@
 </header>
 
 <main id="main" class="detail"><a class="back-link" href="index.html#work">← All projects</a>
-<div class="detail-heading"><p class="eyebrow">PROJECT 03 / TEAM DEVELOPMENT</p>
+<div class="detail-heading"><p class="eyebrow">PROJECT 02 / UNITY · C# · LOCAL CO-OP</p>
 
 <h1>Ghouls’n’Fools<span class="accent">.</span></h1>
-<p class="detail-intro">A one-level local co-op game made by a six-person team. Up to four players work together to escape a haunted hotel, using flashlights and an upgradeable vacuum to deal with the ghosts.</p>
+<p class="detail-intro">A haunted hotel, an upgradeable vacuum, and four friends trying to make it out together. A local co-op game made by a team of six.</p>
 </div>
 
+<figure class="detail-media"><video controls playsinline preload="metadata" poster="assets/gnf-trailer-poster.jpg" width="1280" height="720" aria-label="Ghouls’n’Fools trailer"><source src="assets/gnf-trailer.mp4" type="video/mp4"></video><figcaption>The official trailer, made by our team.</figcaption></figure>
+
 <dl class="facts">
-<div><dt>MY ROLE</dt><dd>Team lead & gameplay programmer</dd></div>
+<div><dt>MY ROLE</dt><dd>Main developer</dd></div>
 
-<div><dt>CONTEXT</dt><dd>Team of 6</dd></div>
+<div><dt>TEAM</dt><dd>Team project</dd></div>
 
-<div><dt>TECHNOLOGY</dt><dd>UNITY / C# / LOCAL CO-OP</dd></div>
+<div><dt>PRODUCTION</dt><dd>1 semester</dd></div>
 </dl>
 
 <div class="project-links"><a class="button" href="https://jeremiahvb.itch.io/gp33ghouls-and-fools">Get the game on itch.io ↗</a>
-<a class="button secondary" href="https://www.youtube.com/watch?v=mjeQlchrMSA">Watch the trailer ↗</a></div>
-
-<figure class="detail-media gameplay-animation"><img src="assets/ghouls-gameplay.gif" alt="Animated gameplay showing four players exploring the haunted hotel with flashlights." width="400" height="225"><figcaption>Gameplay animation from the team’s itch.io page.</figcaption></figure>
+<a class="button secondary" href="https://github.com/TheMiddleGuy/GhoulsAndFoolsArchive">View source ↗</a></div>
 
 <div class="case-study">
 <section class="case-section"><p class="eyebrow">01</p>
 
 <h2>My contribution</h2>
-<div class="case-body">
-<p>Ghouls’n’Fools was my first big team project. The team was a real mix: two game designers who prototyped the mechanics, three artists, and me as team lead and main developer.</p>
-<p>Several people wrote code. The enemy AI, player health and vacuum upgrades, for example, were made by teammates. My own work was the game loop, the lobby, input and movement, integrating the designers’ prototypes, and getting the art into the engine.</p>
+<div class="case-body"><p>Ghouls’n’Fools was my first big team project. I was the main developer, focusing on the game loop, lobby, input and movement, and on turning our designers’ prototypes into one game.</p>
 </div>
 </section>
 
 <section class="case-section"><p class="eyebrow">02</p>
 
 <h2>From separate prototypes to one game</h2>
-<div class="case-body">
-<p><strong>The problem.</strong> Our designers built mechanics quickly, as standalone prototypes, which is exactly what prototypes are for. They worked on their own, but they weren’t written to live together. Lobby joining, colour assignment and the whole game state, for example, sat in one long <code>Update()</code> that checked every single frame whether something had changed.</p>
-<p><strong>What I considered.</strong> Gluing the prototypes together as they were would have been the fastest option in the short run. But then every new mechanic would have to know about every other one, and bugs would hide in that one giant <code>Update()</code>.</p>
-<p><strong>What I chose.</strong> Roughly half of my work on the project was integration: taking each prototype, connecting it to the rest of the game and refactoring where needed. For the game flow, I switched from polling to observers and events, so something happens when an action <em>completes</em>, instead of being checked every frame. Players joining, win and loss checks and counting the remaining ghosts all work this way. It’s a common pattern made for exactly these situations, and I was glad to finally put it into practice.</p>
-<p><strong>The result.</strong> Menus and game flow run without expensive checks in the hot path, and at any moment the game state is known and readable.</p>
+<div class="case-body"><p>Our designers built mechanics fast, as standalone prototypes. They worked on their own, but not together: lobby joining, colour assignment and game state all lived in one long <code>Update()</code> that checked for changes every frame. I connected each prototype to the rest of the game and moved the game flow to events and observers. Players joining, win and loss checks and the ghost counter now react when something happens, instead of polling every frame.</p>
+<figure class="inline-media"><img src="assets/ghouls-gameplay.gif" alt="Animated gameplay showing four players exploring the haunted hotel with flashlights." width="400" height="225" loading="lazy"><figcaption>Gameplay from the final game.</figcaption></figure>
 </div>
 </section>
 
 <section class="case-section"><p class="eyebrow">03</p>
 
-<h2>Bringing the art into the engine</h2>
-<div class="case-body">
-<p>Only one of our artists knew the full asset pipeline, so I became the bridge between art and engine. I turned the art into prefabs: checking scale and orientation, hooking up materials, and making sure everything looked right in game.</p>
-<p>Not exactly coding, but it’s what got the game finished, and it taught me a lot about how art actually makes it onto the screen.</p>
+<h2>An experiment that didn’t ship</h2>
+<div class="case-body"><p>Unity’s spotlights didn’t give us the flashlight look we wanted, so I wrote flashlights from scratch in a custom HLSL shader, fed with each flashlight’s position and direction. It worked, but it was complex, so we went with spotlights cranked up instead. Simpler won.</p>
 </div>
 </section>
 
 <section class="case-section"><p class="eyebrow">04</p>
 
-<h2>An experiment that didn’t ship</h2>
-<div class="case-body">
-<p>The game needed flashlights that light up the hotel, and during prototyping we weren’t happy with Unity’s spotlights. So I did what any mad coder would do and wrote flashlights from scratch in a custom HLSL shader. The game passed each flashlight’s position and direction to the shader as global variables, and the shader lit up the surfaces inside each beam.</p>
-<p>It was wonky, but funnily enough it did give us the look we were after. In the end we scrapped it, mostly because of its complexity, and went with basic spotlights cranked up to oblivion. Simpler won.</p>
-</div>
-</section>
-
-<section class="case-section"><p class="eyebrow">05</p>
-
 <h2>Looking back</h2>
-<div class="case-body">
-<p>As team lead and main developer, next time I’d set up code reviews from day one and agree on a few coding conventions with everyone who touches the code. I’d also rebuild the enemy AI as a finite state machine or a behaviour tree.</p>
-<p>Still, we started with a team of very different backgrounds and shipped a finished game, and I’m proud of how I kept it together. The <a class="inline-link" href="https://jeremiahvb.itch.io/gp33ghouls-and-fools">itch.io page</a> has the download, trailer and devlogs, and I have plenty more stories from this project if you’d like to hear them.</p>
+<div class="case-body"><p>I also led the team. Next time, I’d set up code reviews and coding conventions from day one, and rebuild the enemy AI as a state machine or behaviour tree.</p>
 </div>
 </section>
 </div>
-<a class="next-project" href="projectpp.html"><span class="eyebrow">NEXT PROJECT</span><span>ProjectPP <span aria-hidden="true">→</span></span></a></main>
+<a class="next-project" href="graduation-work.html"><span class="eyebrow">NEXT PROJECT</span><span>Archery Motion Analysis <span aria-hidden="true">→</span></span></a></main>
 
 <footer><a class="brand" href="index.html">DR<span class="accent">.</span></a><span>Danila Runiskovs · Game Developer &amp; C++ / C# Programmer</span><a href="#main">Back to top ↑</a></footer>
 </body></html>

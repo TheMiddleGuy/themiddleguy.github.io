@@ -3,7 +3,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Racing Thoughts · Danila Runiskovs</title>
-<meta name="description" content="My first big Unreal Engine project. Two players race side by side in split screen on a roller-coaster track, steering by tilting their phones. It’s still in production, with the potential to (hopefully) go commercial.">
+<meta name="description" content="Race a friend across a living roller coaster through surreal, dreamlike worlds. The track keeps changing how you drive: ride a rail, slide through a tube, fly across a shaft. Your phone is the steering wheel.">
 <meta name="theme-color" content="#191919">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2212%22%20fill%3D%22%237A263A%22/%3E%3Cpath%20d%3D%22M17%2017h12c23%200%2023%2030%200%2030H17zm8%207v16h4c12%200%2012-16%200-16z%22%20fill%3D%22%23F2E8D5%22/%3E%3C/svg%3E">
 <link rel="stylesheet" href="styles.css"><script src="language.js?v=2" defer></script>
@@ -17,93 +17,59 @@
 </header>
 
 <main id="main" class="detail"><a class="back-link" href="index.html#work">← All projects</a>
-<div class="detail-heading"><p class="eyebrow">PROJECT 01 / UNREAL ENGINE · WORK IN PROGRESS</p>
+<div class="detail-heading"><p class="eyebrow">PROJECT 01 / UNREAL ENGINE 5 · C++ · UMG</p>
 
 <h1>Racing Thoughts<span class="accent">.</span></h1>
-<p class="detail-intro">My first big Unreal Engine project. Two players race side by side in split screen on a roller-coaster track, steering by tilting their phones. It’s still in production, with the potential to (hopefully) go commercial.</p>
+<p class="detail-intro">Race a friend across a living roller coaster through surreal, dreamlike worlds. The track keeps changing how you drive: ride a rail, slide through a tube, fly across a shaft. Your phone is the steering wheel.</p>
 </div>
 
+<figure class="detail-media"><video controls playsinline preload="metadata" poster="assets/rt-gameplay-poster.jpg" width="1280" height="720" aria-label="Racing Thoughts gameplay"><source src="assets/rt-gameplay.mp4" type="video/mp4"></video><figcaption>Gameplay from the current build.</figcaption></figure><div class="gallery"><a href="assets/rt-shot-01.jpg"><img src="assets/rt-shot-01.jpg" alt="A glowing blue cave with golden stars hanging above the track." loading="lazy" width="1920" height="1080"></a><a href="assets/rt-shot-02.jpg"><img src="assets/rt-shot-02.jpg" alt="A giant glowing figure rising above a rocky landscape." loading="lazy" width="1920" height="896"></a><a href="assets/rt-shot-03.jpg"><img src="assets/rt-shot-03.jpg" alt="The track winding through a pink, organic world." loading="lazy" width="1920" height="803"></a></div><p class="media-credit">Beauty shots by the Racing Thoughts art team.</p>
+
 <dl class="facts">
-<div><dt>MY ROLE</dt><dd>Gameplay programmer, owner of the Track module</dd></div>
+<div><dt>MY ROLE</dt><dd>Gameplay & UI programmer</dd></div>
 
-<div><dt>CONTEXT</dt><dd>Team project · 6-week production</dd></div>
+<div><dt>TEAM</dt><dd>Team project</dd></div>
 
-<div><dt>TECHNOLOGY</dt><dd>UNREAL ENGINE 5.7 / C++</dd></div>
+<div><dt>PRODUCTION</dt><dd>In progress</dd></div>
 </dl>
-
-<!-- Add a screenshot or gameplay clip here, inside <figure class="detail-media"> -->
 
 <div class="case-study">
 <section class="case-section"><p class="eyebrow">01</p>
 
-<h2>The game and my part</h2>
-<div class="case-body">
-<p>Phones join the game by scanning a QR code, and the track runs through seven themed areas. It also keeps changing how you drive: one moment you’re riding on the outside of a rail, the next you’re sliding up and over the ceiling of a tube, or flying freely across a shaft. Portals on the track switch between these modes, slow the karts down or kick off a cinematic shot.</p>
-<p>I own the <strong>Track module</strong>: the track itself, its sections, the portals, and the tools around them for the editor and the art team. The kart, play modes and camera belong to my fellow programmer.</p>
-<p>Our team writes production code in Unreal C++, so that’s where I live. It can be confusing and challenging at times, but seeing my code work in a real engine is extremely rewarding.</p>
+<h2>My contribution</h2>
+<div class="case-body"><p>I write a large part of the game’s C++: the game loop, the track and its portals, collisions, and the whole interface, from HUD to menus, in UMG. I also wrote our localisation system and editor tools that let our artists dress the track without touching code.</p>
 </div>
 </section>
 
 <section class="case-section"><p class="eyebrow">02</p>
 
-<h2>Track space instead of physics</h2>
-<div class="case-body">
-<p><strong>The problem.</strong> Karts drive upside down around rails and over the ceilings of tubes. Fast karts, loops and a physics engine are a great recipe for karts flying off into the void.</p>
-<p><strong>The idea.</strong> Everything on the track lives in <em>track space</em>: a distance along the spline, plus an angle around the cross-section (0° is the top, 90° is the right). Karts don’t use physics to follow the track at all. They move by <code>distance += speed × time</code>, and the current play mode decides where on the cross-section the kart sits.</p>
-<p><strong>The result.</strong></p>
-<ul>
-<li>Movement behaves the same at any frame rate, and nobody falls off a loop.</li>
-<li>Objects are placed by distance, angle and height, which works in every play mode.</li>
-<li>Passing a portal is a range check, not a collision, so you can’t miss one no matter how fast you go.</li>
-</ul>
+<h2>Portals with swappable effects</h2>
+<div class="case-body"><p>A portal is a thin actor holding a list of effect objects, like <em>Switch Mode</em>, <em>Slow Down</em> or <em>Cinematic</em>, picked from a dropdown in the editor. A new effect is one new class: the portal, the track and the kart stay untouched. Track sections build themselves from the portals, so the two can never get out of sync.</p>
 </div>
 </section>
 
 <section class="case-section"><p class="eyebrow">03</p>
 
-<h2>Portals with swappable effects</h2>
-<div class="case-body">
-<p><strong>The problem.</strong> In the prototype, a portal was one class doing three different jobs, switched on and off with bools. The kart then had to read all of those settings and carry them out itself. Adding a fourth kind of portal would have meant opening that class up yet again.</p>
-<p><strong>What I chose.</strong> A portal is now a thin actor holding a list of <strong>effect objects</strong> (Switch Mode, Slow Down, Cinematic). You pick them from a dropdown in the editor, and each has its own settings. It’s the Strategy pattern, and it means:</p>
-<ul>
-<li>A new effect is one new class. Portal, track and kart stay untouched.</li>
-<li>Effects only talk to an <code>IPortalTraveler</code> interface, so the track code never includes a kart header.</li>
-<li><strong>Sections build themselves from portals.</strong> Every portal with a Switch Mode effect starts a new section, and sections rebuild automatically whenever a portal is added, moved or changed. Nobody edits a list of sections by hand, so the two can never disagree.</li>
-</ul>
+<h2>Movement in track space</h2>
+<div class="case-body"><p>Karts don’t follow the track with physics. They move along the spline by distance, and the current play mode places them on the cross-section. Movement behaves the same at any frame rate, nobody falls off a loop, and passing a portal is a range check that can’t be missed at any speed.</p>
 </div>
 </section>
 
 <section class="case-section"><p class="eyebrow">04</p>
 
-<h2>Contracts first</h2>
-<div class="case-body">
-<p>Two programmers, a kart and a track that need to talk to each other, and neither of them exists yet. So before writing any code, my teammate and I agreed on two contracts: a <code>UPlayMode</code> base class (what the track and the kart can ask a play mode) and the <code>IPortalTraveler</code> interface (what a portal can ask of whatever drives through it).</p>
-<p>That let me build and test the track and portals before a single play mode existed. When the kart arrived, hooking it up to the portals took about 30 lines. Very satisfying.</p>
+<h2>UI built for a team</h2>
+<div class="case-body"><p>Every widget is a C++ class with a Blueprint on top for the layout, connected through <code>BindWidget</code>. Programmers own the logic, artists own the look, and a missing or renamed element shows up as a compile error instead of a crash.</p>
 </div>
 </section>
 
 <section class="case-section"><p class="eyebrow">05</p>
 
-<h2>Built for the editor and the art team</h2>
-<div class="case-body">
-<ul>
-<li>Portals snap onto the spline when you drop them in, already facing the right way.</li>
-<li>Sections show up as coloured rings in the editor, so you can see the whole track layout at a glance.</li>
-<li>For every section, the track generates a spline that copies its shape and roll. Each one is tagged with its play mode and an optional art tag set on the portal (e.g. <code>Tube_Glass</code>), so artists can dress each section in PCG graphs without touching code.</li>
-<li>Unreal’s debug lines only show up in one half of a split screen, so the debug road is drawn with instanced meshes instead: one draw call, visible on both screens, and rebuilt only when sections change.</li>
-</ul>
-</div>
-</section>
-
-<section class="case-section"><p class="eyebrow">06</p>
-
-<h2>Want to see more?</h2>
-<div class="case-body">
-<p>The repository isn’t public yet, but I’d be happy to walk you through the code and the decisions behind it. And if you have an idea how to make it better, I’d love to hear it!</p>
+<h2>Want to see the code?</h2>
+<div class="case-body"><p>The project isn’t public yet, so <a class="code-link" href="https://drive.google.com/drive/folders/1h1bf0fmoeYdJ5bseKXdV3oZrapFi3XxM?usp=sharing" target="_blank" rel="noopener">here</a> is a short snippet! I’d be happy to show you more in person!</p>
 </div>
 </section>
 </div>
-<a class="next-project" href="bomberman.html"><span class="eyebrow">NEXT PROJECT</span><span>Bomberman <span aria-hidden="true">→</span></span></a></main>
+<a class="next-project" href="ghouls-and-fools.html"><span class="eyebrow">NEXT PROJECT</span><span>Ghouls’n’Fools <span aria-hidden="true">→</span></span></a></main>
 
 <footer><a class="brand" href="index.html">DR<span class="accent">.</span></a><span>Danila Runiskovs · Game Developer &amp; C++ / C# Programmer</span><a href="#main">Back to top ↑</a></footer>
 </body></html>

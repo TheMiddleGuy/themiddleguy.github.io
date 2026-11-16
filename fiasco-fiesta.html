@@ -3,7 +3,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Fiasco Fiesta · Danila Runiskovs</title>
-<meta name="description" content="A local multiplayer game made by a six-person team during the three-day Xbox Game Camp Belgium game jam. Players organise a birthday party, unpack supplies and try to keep the children happy.">
+<meta name="description" content="A birthday party, a pile of supplies to unpack and a crowd of children to keep happy. What could possibly go wrong? Made in two and a half days at the Xbox Game Camp Belgium game jam.">
 <meta name="theme-color" content="#191919">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2212%22%20fill%3D%22%237A263A%22/%3E%3Cpath%20d%3D%22M17%2017h12c23%200%2023%2030%200%2030H17zm8%207v16h4c12%200%2012-16%200-16z%22%20fill%3D%22%23F2E8D5%22/%3E%3C/svg%3E">
 <link rel="stylesheet" href="styles.css"><script src="language.js?v=2" defer></script>
@@ -17,65 +17,48 @@
 </header>
 
 <main id="main" class="detail"><a class="back-link" href="index.html#work">← All projects</a>
-<div class="detail-heading"><p class="eyebrow">PROJECT 05 / GAME JAM</p>
+<div class="detail-heading"><p class="eyebrow">PROJECT 04 / UNITY · C# · GAME JAM</p>
 
 <h1>Fiasco Fiesta<span class="accent">.</span></h1>
-<p class="detail-intro">A local multiplayer game made by a six-person team during the three-day Xbox Game Camp Belgium game jam. Players organise a birthday party, unpack supplies and try to keep the children happy.</p>
+<p class="detail-intro">A birthday party, a pile of supplies to unpack and a crowd of children to keep happy. What could possibly go wrong? Made in two and a half days at the Xbox Game Camp Belgium game jam.</p>
 </div>
 
+<figure class="detail-media"><video controls playsinline preload="metadata" poster="assets/ff-trailer-poster.jpg" width="854" height="480" aria-label="Fiasco Fiesta trailer"><source src="assets/FF_Trailer.mp4" type="video/mp4"></video><figcaption>The game’s trailer, with gameplay.</figcaption></figure>
+
 <dl class="facts">
-<div><dt>MY ROLE</dt><dd>Team lead & programmer</dd></div>
+<div><dt>MY ROLE</dt><dd>Gameplay programmer</dd></div>
 
-<div><dt>CONTEXT</dt><dd>Team of 6 · 3 days</dd></div>
+<div><dt>TEAM</dt><dd>Team project</dd></div>
 
-<div><dt>TECHNOLOGY</dt><dd>UNITY / C# / LOCAL MULTIPLAYER</dd></div>
+<div><dt>PRODUCTION</dt><dd>2.5 days</dd></div>
 </dl>
 
 <div class="project-links"><a class="button" href="https://middleguy.itch.io/fiasco-fiesta">Get the game on itch.io ↗</a>
 <a class="button secondary" href="https://github.com/Dan-Runiskovs/GameJamThing">View source ↗</a></div>
 
-<figure class="detail-media"><img src="assets/fiasco-fiesta.png" alt="Fiasco Fiesta cover artwork from the game’s itch.io page." style="width:100%;max-height:620px;object-fit:contain">
-<figcaption>Project image from the team’s itch.io page.</figcaption></figure>
-
 <div class="case-study">
 <section class="case-section"><p class="eyebrow">01</p>
 
-<h2>How I ended up here</h2>
-<div class="case-body">
-<p>I got an almost last-minute invitation to join a team of animators and sound designers as one of two developers for the Xbox Game Camp Belgium game jam: three days, or two and a half to be exact. We went with Unity, because of its ease of use.</p>
-<p>The deadline was tight, but the mood wasn’t. Deadlines don’t really stress me, and I enjoyed every hour of it, just like the rest of the team.</p>
+<h2>A game in 2.5 days</h2>
+<div class="case-body"><p>With one of those days spent brainstorming, there was no time to write everything from scratch. I took code from my earlier Unity projects, including the lobby and controls from Ghouls’n’Fools, and split it into small scripts that fit together like puzzle pieces. My fellow developer built the truck delivery system.</p>
 </div>
 </section>
 
 <section class="case-section"><p class="eyebrow">02</p>
 
-<h2>A game in 2.5 days</h2>
-<div class="case-body">
-<p><strong>The problem.</strong> How do you make a game in two and a half days, when one of them goes entirely to brainstorming? Reduce, reuse, recycle, or whatever they say.</p>
-<p><strong>What I considered.</strong> Writing everything from scratch. In a jam, that’s time you simply don’t have.</p>
-<p><strong>What I chose.</strong> I took code from the Ghouls’n’Fools prototype and from my older Unity experiments and assignments, and cut it up into separate scripts that fit together like puzzle pieces. The lobby and controls, for example, came straight from Ghouls’n’Fools. Not the prettiest code, but it had already proven that it works. Meanwhile, my fellow developer built the whole truck delivery system.</p>
+<h2>Built so animators don’t wait</h2>
+<div class="case-body"><p>I set up the prefabs as ready-made shells, with scripts, colliders and animation hooks in place and clear slots for meshes and animation states. Our animators could drop in their work and see it in game without waiting for me.</p>
 </div>
 </section>
 
 <section class="case-section"><p class="eyebrow">03</p>
 
-<h2>Built so animators don’t wait for a programmer</h2>
-<div class="case-body">
-<p>With two programmers and a team full of animators, I couldn’t be the bottleneck for every single asset. So I set up the prefabs as ready-made shells: scripts, colliders and animation hooks already in place, with clear slots for the mesh and the animation states.</p>
-<p>An animator could drop in their model, assign their clips and see it working in the game without waiting for me. That freed me up for gameplay while the art kept flowing in.</p>
-</div>
-</section>
-
-<section class="case-section"><p class="eyebrow">04</p>
-
 <h2>Looking back</h2>
-<div class="case-body">
-<p>We shipped a fun, playable vertical slice. Yes, it could use some onboarding and a bit of balancing, but it was fun to make and fun to play, and in a jam that’s what counts.</p>
-<p>This project was less about code and more about working with people I had just met, under a tight deadline. When software was crumbling, time was ticking and people started to panic, I was the one keeping the team calm and helping out wherever it was needed. I learned I can lead by example, and make things work under those conditions.</p>
+<div class="case-body"><p>We shipped a fun, playable vertical slice. It could use more onboarding and balancing, but I learned I can keep a team calm and make things work under a tight deadline.</p>
 </div>
 </section>
 </div>
-<a class="next-project" href="graduation-work.html"><span class="eyebrow">NEXT PROJECT</span><span>Archery Motion Analysis <span aria-hidden="true">→</span></span></a></main>
+<a class="next-project" href="bomberman.html"><span class="eyebrow">NEXT PROJECT</span><span>Bomberman <span aria-hidden="true">→</span></span></a></main>
 
 <footer><a class="brand" href="index.html">DR<span class="accent">.</span></a><span>Danila Runiskovs · Game Developer &amp; C++ / C# Programmer</span><a href="#main">Back to top ↑</a></footer>
 </body></html>

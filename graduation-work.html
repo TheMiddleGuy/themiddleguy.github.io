@@ -3,7 +3,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Archery Motion Analysis · Danila Runiskovs</title>
-<meta name="description" content="My graduation work, where my two passions meet: motion tracking to help archers measure how stable and consistent their shots really are.">
+<meta name="description" content="My graduation work: motion sensors and a bit of maths to show archers how steady and consistent their shots really are.">
 <meta name="theme-color" content="#191919">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2212%22%20fill%3D%22%237A263A%22/%3E%3Cpath%20d%3D%22M17%2017h12c23%200%2023%2030%200%2030H17zm8%207v16h4c12%200%2012-16%200-16z%22%20fill%3D%22%23F2E8D5%22/%3E%3C/svg%3E">
 <link rel="stylesheet" href="styles.css"><script src="language.js?v=2" defer></script>
@@ -17,59 +17,45 @@
 </header>
 
 <main id="main" class="detail"><a class="back-link" href="index.html#work">← All projects</a>
-<div class="detail-heading"><p class="eyebrow">PROJECT 06 / GRADUATION WORK · WORK IN PROGRESS</p>
+<div class="detail-heading"><p class="eyebrow">PROJECT 03 / GRADUATION WORK · UNREAL ENGINE · SONY MOCOPI · CUDA C++</p>
 
 <h1>Archery Motion Analysis<span class="accent">.</span></h1>
-<p class="detail-intro">My graduation work, where my two passions meet: motion tracking to help archers measure how stable and consistent their shots really are.</p>
+<p class="detail-intro">My graduation work: motion sensors and a bit of maths to show archers how steady and consistent their shots really are.</p>
 </div>
+
+<figure class="detail-media"><video controls playsinline preload="metadata" muted loop poster="assets/aim-replay-poster.jpg" width="1280" height="752" aria-label="Replay of recorded archery shots"><source src="assets/aim-replay.mp4" type="video/mp4"></video><figcaption>The replay viewer: recorded shots played back on an avatar, shot by shot and frame by frame.</figcaption></figure>
 
 <dl class="facts">
 <div><dt>MY ROLE</dt><dd>Developer</dd></div>
 
-<div><dt>CONTEXT</dt><dd>Graduation work · in progress</dd></div>
+<div><dt>TEAM</dt><dd>Solo project</dd></div>
 
-<div><dt>TECHNOLOGY</dt><dd>SONY MOCOPI / DTW / CUDA C++</dd></div>
+<div><dt>PRODUCTION</dt><dd>In progress</dd></div>
 </dl>
-
-<!-- Add a screenshot or gameplay clip here, inside <figure class="detail-media"> -->
 
 <div class="case-study">
 <section class="case-section"><p class="eyebrow">01</p>
 
 <h2>Why archery?</h2>
-<div class="case-body">
-<p>You may have seen on my <a class="inline-link" href="about.html">About page</a> that I love archery. It brings me joy and peace. But I’ve run into the same problem again and again: a lack of coaching and technical feedback. I always wanted to apply my game dev and programming knowledge to archery, and I think I’ve found just the way.</p>
+<div class="case-body"><p>I’m a competitive archer, and like many archers, I’ve often trained without a coach watching every shot. This project is the coach’s eye I always wanted.</p>
 </div>
 </section>
 
 <section class="case-section"><p class="eyebrow">02</p>
 
-<h2>The problem</h2>
-<div class="case-body">
-<p>In archery, consistency is everything: the best shot is the one you can repeat. But without a coach watching every single shot, it’s hard to know how stable your body really is from draw to release, or whether you’re actually improving over time.</p>
+<h2>How it works</h2>
+<div class="case-body"><p>Sony Mocopi sensors record the archer’s upper body during the shot. Every session is saved and can be replayed on an avatar, shot by shot. Dynamic Time Warping then lines shots up by phase, draw with draw and release with release, so they can be compared even when their timing differs. The heavy number crunching runs in CUDA C++.</p>
 </div>
 </section>
 
 <section class="case-section"><p class="eyebrow">03</p>
 
-<h2>The plan</h2>
-<div class="case-body">
-<p>I’m using Sony Mocopi motion tracking sensors to record an archer’s upper body during the shot.</p>
-<p>Two shots never take exactly the same amount of time, so I can’t just compare them frame by frame. Instead, I’ll use <strong>Dynamic Time Warping (DTW)</strong>, an algorithm that aligns two motions of different speeds before comparing them. That way, the draw gets compared with the draw and the release with the release. On top of that, I’ll build measures for stability and consistency, so archers can follow their progress over time.</p>
-<p>The sensors produce a lot of data that needs to be reduced and compared quickly, so I’m planning to do the heavy lifting in <strong>CUDA C++</strong>.</p>
-<p>The best part: it only needs commercially available motion trackers, so anyone with access to them could track their own progress.</p>
-</div>
-</section>
-
-<section class="case-section"><p class="eyebrow">04</p>
-
-<h2>Stay tuned</h2>
-<div class="case-body">
-<p>It’s still early days, but I have high hopes for this project, and I’d be more than happy to tell you more about it.</p>
+<h2>What’s next</h2>
+<div class="case-body"><p>Turning those comparisons into clear stability and consistency scores that archers can follow over time.</p>
 </div>
 </section>
 </div>
-<a class="next-project" href="racing-thoughts.html"><span class="eyebrow">NEXT PROJECT</span><span>Racing Thoughts <span aria-hidden="true">→</span></span></a></main>
+<a class="next-project" href="fiasco-fiesta.html"><span class="eyebrow">NEXT PROJECT</span><span>Fiasco Fiesta <span aria-hidden="true">→</span></span></a></main>
 
 <footer><a class="brand" href="index.html">DR<span class="accent">.</span></a><span>Danila Runiskovs · Game Developer &amp; C++ / C# Programmer</span><a href="#main">Back to top ↑</a></footer>
 </body></html>

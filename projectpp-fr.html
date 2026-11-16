@@ -3,7 +3,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ProjectPP · Danila Runiskovs</title>
-<meta name="description" content="Un outil de diaporama pour la NES, réalisé avec quatre amis en assembleur 6502. Ma première expérience en assembleur, et l’endroit où j’ai appris à faire biper une Nintendo.">
+<meta name="description" content="Un outil de diaporama pour la Nintendo Entertainment System, écrit en assembleur 6502 par une équipe de cinq.">
 <meta name="theme-color" content="#191919">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2212%22%20fill%3D%22%237A263A%22/%3E%3Cpath%20d%3D%22M17%2017h12c23%200%2023%2030%200%2030H17zm8%207v16h4c12%200%2012-16%200-16z%22%20fill%3D%22%23F2E8D5%22/%3E%3C/svg%3E">
 <link rel="stylesheet" href="styles.css"><script src="language.js?v=2" defer></script>
@@ -17,62 +17,47 @@
 </header>
 
 <main id="main" class="detail"><a class="back-link" href="index-fr.html#work">← Tous les projets</a>
-<div class="detail-heading"><p class="eyebrow">PROJET 04 / PROGRAMMATION BAS NIVEAU</p>
+<div class="detail-heading"><p class="eyebrow">PROJET 06 / ASSEMBLEUR 6502 · NES</p>
 
 <h1>ProjectPP<span class="accent">.</span></h1>
-<p class="detail-intro">Un outil de diaporama pour la NES, réalisé avec quatre amis en assembleur 6502. Ma première expérience en assembleur, et l’endroit où j’ai appris à faire biper une Nintendo.</p>
+<p class="detail-intro">Un outil de diaporama pour la Nintendo Entertainment System, écrit en assembleur 6502 par une équipe de cinq.</p>
 </div>
 
+<figure class="detail-media nes"><img src="assets/projectpp.gif" alt="Diapositive de titre de ProjectPP, « PowerPoint in Assembly », avec les cinq membres de l’équipe." width="1006" height="946"><figcaption>L’écran d’ouverture du diaporama, avec les crédits de l’équipe.</figcaption></figure>
+
 <dl class="facts">
-<div><dt>MON RÔLE</dt><dd>Programmeur assembleur</dd></div>
+<div><dt>MON RÔLE</dt><dd>Programmeur</dd></div>
 
-<div><dt>CONTEXTE</dt><dd>Équipe de 5</dd></div>
+<div><dt>ÉQUIPE</dt><dd>Projet d’équipe</dd></div>
 
-<div><dt>TECHNOLOGIES</dt><dd>ASSEMBLEUR 6502 / NES</dd></div>
+<div><dt>DURÉE</dt><dd>1 semestre</dd></div>
 </dl>
 
-<div class="project-links"><a class="button" href="https://github.com/meowmeowbee01/Project_PP">Voir le code ↗</a></div>
-
-<figure class="detail-media nes"><img src="assets/projectpp.gif" alt="Diapositive d’ouverture de ProjectPP, intitulée PowerPoint in Assembly, avec les noms des cinq membres de l’équipe." width="1006" height="946">
-<figcaption>L’écran d’ouverture du diaporama, avec les crédits de l’équipe.</figcaption></figure>
+<div class="project-links"><a class="button" href="https://github.com/meowmeowbee01/Project_PP">Voir le code source ↗</a></div>
 
 <div class="case-study">
 <section class="case-section"><p class="eyebrow">01</p>
 
 <h2>Ma contribution</h2>
-<div class="case-body">
-<p>Pour la plupart d’entre nous, c’était la première fois qu’on écrivait de l’assembleur, et il m’a fallu un moment pour m’y sentir à l’aise. Au début, je me suis concentré sur les tests, la compréhension du code existant et des améliorations de confort : remettre dans le bon ordre les actions de la boucle principale et gérer des numéros de diapositive jusqu’à trois chiffres (qui aurait besoin de 999 diapositives ?).</p>
-<p>Puis on m’a confié une fonctionnalité bien à moi : le son.</p>
+<div class="case-body"><p>C’était ma première expérience en assembleur. J’ai commencé par les tests et des améliorations de confort, comme l’ordre de la boucle principale et les numéros de diapositive à trois chiffres, puis on m’a confié une fonctionnalité à moi : le son.</p>
 </div>
 </section>
 
 <section class="case-section"><p class="eyebrow">02</p>
 
 <h2>Faire biper une NES</h2>
-<div class="case-body">
-<p><strong>Le problème.</strong> Quand on change de diapositive, la console doit émettre un petit bip : aigu en avançant, grave en reculant. Simple à décrire. Sur une NES, un peu moins.</p>
-<p><strong>Ce que j’ai envisagé.</strong> D’abord, une bibliothèque audio NES précompilée existante. En théorie, la solution facile. En pratique, les sons qui sortaient n’étaient pas ceux que j’avais créés dans l’éditeur, et personne, pas même notre professeur, n’a compris pourquoi.</p>
-<p><strong>Ce que j’ai choisi.</strong> « Tomber sept fois, se relever huit », me suis-je dit. Je n’allais pas laisser un bug de bibliothèque bloquer l’équipe : j’ai donc parcouru forum après forum pour voir comment d’autres développeurs programmaient le son sur NES, puis je l’ai écrit moi-même. Il n’utilise que le premier canal pulse (onde carrée) :</p>
-<ul>
-<li><code>$4000</code> règle un rapport cyclique de 25 % à volume constant 10.</li>
-<li><code>$4001</code> désactive le sweep, et <code>$4003</code> règle un compteur de durée long.</li>
-<li><code>$4002</code> règle la hauteur : une période de 100 pour le bip aigu (~1,1 kHz) et de 180 pour le grave (~620 Hz).</li>
-<li>Un minuteur d’un octet en page zéro est réglé sur 30 images et décrémenté dans le NMI, une fois par image. Quand il atteint zéro, le volume repasse à 0. À 60 images par seconde, cela fait une demi-seconde.</li>
-</ul>
-<p>Les bips respectent aussi le réglage son activé/désactivé de l’outil.</p>
-<p><strong>Le résultat.</strong> Un « bip » en avançant et un « boup » en reculant. Tout se résume à savoir quel bit mettre, à quelle adresse, à quel moment exactement et pendant combien de temps. En chemin, j’ai appris comment le son est produit numériquement au niveau le plus bas.</p>
+<div class="case-body"><p>Une bibliothèque audio précompilée jouait les mauvais sons, et personne ne comprenait pourquoi : j’ai donc écrit le son moi-même sur le premier canal pulse. <code>$4000</code> règle le rapport cyclique et le volume, <code>$4002</code> et <code>$4003</code> la hauteur, et un minuteur d’un octet décrémenté dans le NMI coupe le bip après 30 images. Un « bip » aigu en avançant, un « boup » grave en reculant.</p>
 </div>
 </section>
 
 <section class="case-section"><p class="eyebrow">03</p>
 
 <h2>Avec du recul</h2>
-<div class="case-body">
-<p>J’aurais aimé me documenter un peu plus au début du projet. Avec un meilleur départ, j’aurais pu m’attaquer à quelque chose de plus ambitieux, comme un éditeur de texte intégré. Mais je suis fier de ce que j’ai réalisé, et de ne pas avoir abandonné.</p>
+<div class="case-body"><p>J’aurais aimé me documenter davantage au début, pour m’attaquer à quelque chose de plus ambitieux. Mais je suis fier de ne pas avoir abandonné.</p>
 </div>
 </section>
 </div>
-<a class="next-project" href="fiasco-fiesta-fr.html"><span class="eyebrow">PROJET SUIVANT</span><span>Fiasco Fiesta <span aria-hidden="true">→</span></span></a></main>
+<a class="next-project" href="racing-thoughts-fr.html"><span class="eyebrow">PROJET SUIVANT</span><span>Racing Thoughts <span aria-hidden="true">→</span></span></a></main>
 
 <footer><a class="brand" href="index-fr.html">DR<span class="accent">.</span></a><span>Danila Runiskovs · Développeur de jeux et programmeur C++ / C#</span><a href="#main">Retour en haut ↑</a></footer>
 </body></html>
